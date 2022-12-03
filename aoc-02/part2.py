@@ -19,8 +19,8 @@ def score(i: str, j: str) -> int:
     return values[strategy[j][i]] + values[j]
 
 
-# with open("aoc-02-training.txt") as f:
-with open("aoc-02.txt") as f:
+# with open("data-training.txt") as f:
+with open("data.txt") as f:
     data = [line.split() for line in f]
 
 full_score = sum(score(i, j) for (i, j) in data)
