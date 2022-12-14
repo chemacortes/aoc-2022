@@ -1,7 +1,6 @@
-file_input = "data-training.txt"
-# file_input = "data.txt"
-
+from util import read
 
 if __name__ == "__main__":
-    with open(file_input) as f:
-        pass
+
+    TRAINING = True
+    data = read("data-training.txt" if TRAINING else "data.txt")
