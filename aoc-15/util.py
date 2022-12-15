@@ -14,3 +14,13 @@ def read(file_input: str):
         }
 
     return sensors
+
+
+def distance(p: tuple[int, int], q: tuple[int, int]) -> int:
+    """Distance function in Manhatan Geometry
+    https://en.wikipedia.org/wiki/Taxicab_geometry"""
+
+    (x, y) = p
+    (w, z) = q
+
+    return abs(x - w) + abs(y - z)
