@@ -1,7 +1,7 @@
 import re
 
 pat = re.compile(
-    "Sensor at x=([-]?\d+), y=([-]?\d+): closest beacon is at x=([-]?\d+), y=([-]?\d+)"
+    r"Sensor at x=([-]?\d+), y=([-]?\d+): closest beacon is at x=([-]?\d+), y=([-]?\d+)"
 )
 
 
