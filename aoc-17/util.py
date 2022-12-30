@@ -1,4 +1,4 @@
-from collections.abc import Iterable
+from collections.abc import Iterable, Iterator
 from enum import Enum
 
 ROCK = "#"
@@ -48,15 +48,6 @@ class Chamber:
         for level in levels:
             print(level)
         print("+-------+")
-
-    # Used in Part2
-
-    def base(self) -> tuple[int, ...]:
-        return tuple(
-            self.top
-            - max((y for (x, y) in self.positions if x == i), default=0)
-            for i in range(0, self.WIDTH)
-        )
 
 
 class Move(Enum):
@@ -146,7 +137,7 @@ def read(file_input: str):
 # Special for Part2
 
 
-def moves2(s: str) -> Iterable[tuple[int, Move]]:
+def moves2(s: str) -> Iterator[tuple[int, Move]]:
     while True:
         yield from ((i, Move(c)) for (i, c) in enumerate(s))
 

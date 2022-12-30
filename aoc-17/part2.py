@@ -3,6 +3,28 @@ from pathlib import Path
 
 from util import Chamber, read2, rocks
 
+
+class Cache:
+    def __init__(self):
+        self.cache = {}
+
+    def __call__(
+        self, n_rock: int, n_move: int, chamber: Chamber
+    ) -> tuple[int, int] | None:
+        def roof(x: int) -> int:
+            heights = (j for (i, j) in chamber.positions if i == x)
+            return chamber.top - max(heights, default=0)
+
+        chamber_roof = tuple(roof(i) for i in range(0, chamber.WIDTH))
+        key = (n_rock % NUMROCKS, n_move, chamber_roof)
+
+        if key in self.cache:
+            return self.cache[key]
+
+        self.cache[key] = (n_rock, chamber.top)
+        return None
+
+
 if __name__ == "__main__":
 
     os.chdir(Path(__file__).parent)
@@ -15,33 +37,37 @@ if __name__ == "__main__":
     until = 1000000000000
     NUMROCKS = 5
 
-    seen: dict[tuple, tuple] = {}
-    found_repeat = False
+    cache = Cache()
+    cycle_found = False
     sum_top = 0
 
-    for (n, rock) in enumerate(rocks()):
-        if n >= until:
+    for (n_rock, rock) in enumerate(rocks()):
+        if n_rock >= until:
             break
 
         rock.pos(2, chamber.top + 3)
 
-        while not rock.stopped:
-            (mi, move) = next(moves)
+        while True:
+            (n_move, move) = next(moves)
             rock.move(chamber, move)
 
-        if not found_repeat:
-            key = (n % NUMROCKS, mi, chamber.base())
-            if key in seen:
-                found_repeat = True
-                last_n, last_top = seen[key]
-                size = n - last_n
+            if rock.stopped:
+                break
 
-                repeats, rest = divmod(until - last_n, size)
-                repeats -= 1
+        if not cycle_found:
 
-                until = n + rest
-                sum_top = (chamber.top - last_top) * repeats
-            else:
-                seen[key] = (n, chamber.top)
+            match cache(n_rock, n_move, chamber):
+
+                case (n_rock_last, top_last):
+                    cycle_found = True
+
+                    size = n_rock - n_rock_last
+                    repeats, rest = divmod(until - n_rock_last, size)
+
+                    until = n_rock + rest
+                    sum_top = (chamber.top - top_last) * (repeats - 1)
+
+                case None:
+                    pass
 
     print(chamber.top + sum_top)
