@@ -1,4 +1,4 @@
-[Day 17 - Advent of Code 2022](https://adventofcode.com/2022/day/17#part2)
+[Day 17 - Advent of Code 2022](https://adventofcode.com/2022/day/17)
 
 ## \-\-\- Day 17: Pyroclastic Flow ---
 
@@ -348,8 +348,6 @@ _How many units tall will the tower of rocks be after 2022 rocks have stopped fa
 
 Your puzzle answer was `3202`.
 
-The first half of this puzzle is complete! It provides one gold star: *
-
 ## \-\-\- Part Two ---
 
 The elephants are not impressed by your simulation. They demand to know how tall the tower will be after `_1000000000000_` rocks have stopped! Only then will they feel confident enough to proceed through the cave.
@@ -357,3 +355,7 @@ The elephants are not impressed by your simulation. They demand to know how tall
 In the example above, the tower would be `_1514285714288_` units tall!
 
 _How tall will the tower be after `1000000000000` rocks have stopped?_
+
+Your puzzle answer was `1591977077352`.
+
+Both parts of this puzzle are complete! They provide two gold stars: **

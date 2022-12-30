@@ -49,6 +49,15 @@ class Chamber:
             print(level)
         print("+-------+")
 
+    # Used in Part2
+
+    def base(self) -> tuple[int, ...]:
+        return tuple(
+            self.top
+            - max((y for (x, y) in self.positions if x == i), default=0)
+            for i in range(0, self.WIDTH)
+        )
+
 
 class Move(Enum):
     left = "<"
@@ -132,3 +141,18 @@ def read(file_input: str):
         data = f.read().strip("\n")
 
     return moves(data)
+
+
+# Special for Part2
+
+
+def moves2(s: str) -> Iterable[tuple[int, Move]]:
+    while True:
+        yield from ((i, Move(c)) for (i, c) in enumerate(s))
+
+
+def read2(file_input: str):
+    with open(file_input) as f:
+        data = f.read().strip("\n")
+
+    return moves2(data)
