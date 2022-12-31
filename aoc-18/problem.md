@@ -1,4 +1,4 @@
-[Day 18 - Advent of Code 2022](https://adventofcode.com/2022/day/18#part2)
+[Day 18 - Advent of Code 2022](https://adventofcode.com/2022/day/18)
 
 ## \-\-\- Day 18: Boiling Boulders ---
 
@@ -36,8 +36,6 @@ _What is the surface area of your scanned lava droplet?_
 
 Your puzzle answer was `4500`.
 
-The first half of this puzzle is complete! It provides one gold star: *
-
 ## \-\-\- Part Two ---
 
 Something seems off about your calculation. The cooling rate depends on exterior surface area, but your calculation also included the surface area of air pockets trapped in the lava droplet.
@@ -47,3 +45,7 @@ Instead, consider only cube sides that could be reached by the water and steam a
 In the larger example above, exactly one cube of air is trapped within the lava droplet (at `2,2,5`), so the exterior surface area of the lava droplet is `_58_`.
 
 _What is the exterior surface area of your scanned lava droplet?_
+
+Your puzzle answer was `2558`.
+
+Both parts of this puzzle are complete! They provide two gold stars: **
