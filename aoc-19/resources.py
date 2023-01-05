@@ -1,11 +1,10 @@
 from __future__ import annotations
 
 import math
-from collections.abc import Hashable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import cast
 
-from puzzle import Clay, Cost, Geode, Obsidian, Ore, max_time
+from puzzle import Clay, Cost, Geode, Obsidian, Ore
 
 # types
 Value = tuple[Geode, Obsidian, Clay, Ore]
@@ -35,18 +34,22 @@ class Resources:
     robots_obsidian: int = 0
     robots_geode: int = 0
 
-    trace: tuple[str, ...] = ()
+    max_time: Time = field(default=-1, compare=False, kw_only=True)
+    trace: tuple[str, ...] = field(default=(), compare=False, kw_only=True)
 
     def __repr__(self):
         return (
             f"Resources(time={self.time}, store={self.store}, "
-            + f"robots={self.robots}, value={self.value})"
+            f"robots={self.robots}, value={self.value})"
         )
 
     def show(self):
         for r in self.trace:
             print(r)
         print(self)
+
+    def active_trace(self):
+        self.max_time = self.time
 
     @property
     def value(self) -> Value:
@@ -70,9 +73,14 @@ class Resources:
             self.robots_geode,
         )
 
-    # for use as a key at dictionaries
-    def key(self) -> Hashable:
-        return (self.time, self.robots, self.store)
+    def replace(self, time: Time, store: Value, robots: Robots) -> Resources:
+        return Resources(
+            time,
+            *store,
+            *robots,
+            max_time=self.max_time,
+            trace=self.trace,
+        )
 
     def time_cost(self, cost: Cost) -> Time | None:
 
@@ -101,9 +109,7 @@ class Resources:
             tuple(i + j * spend_time for i, j in zip(self.store, self.robots)),
         )
 
-        res = Resources(
-            self.time - spend_time, *production, *self.robots, trace=self.trace
-        )
+        res = self.replace(self.time - spend_time, production, self.robots)
         res.add_trace()
         return res
 
@@ -136,11 +142,12 @@ class Resources:
             print("FALLA")
             return None
 
-        res = Resources(self.time, *production, *robots, trace=self.trace)
+        res = self.replace(self.time, production, robots)
         res.add_trace(f" <<< new {robot_type} robot")
         return res
 
     def add_trace(self, msg: str = ""):
-        self.trace = self.trace + (
-            f"{max_time-self.time:2} {self!r} ".ljust(90) + msg,
-        )
+        if self.max_time > 0:
+            self.trace = self.trace + (
+                f"{self.max_time-self.time:2} {self!r} ".ljust(90) + msg,
+            )

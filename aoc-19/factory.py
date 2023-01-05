@@ -1,3 +1,5 @@
+from collections.abc import Iterator
+
 from puzzle import Blueprint
 from resources import Resources
 
@@ -70,17 +72,20 @@ def make_robot_geode(
     )
 
 
-def make_robots(blueprint: Blueprint, resources: Resources) -> list[Resources]:
+def make_robots(
+    blueprint: Blueprint, resources: Resources
+) -> Iterator[Resources]:
 
-    new_robots = [
-        x
-        for x in (
-            make_robot_geode(blueprint, resources),
-            make_robot_obsidian(blueprint, resources),
-            make_robot_clay(blueprint, resources),
-            make_robot_ore(blueprint, resources),
+    yield from (
+        res
+        for res in (
+            f(blueprint, resources)
+            for f in (
+                make_robot_geode,
+                make_robot_obsidian,
+                make_robot_clay,
+                make_robot_ore,
+            )
         )
-        if x is not None
-    ]
-
-    return new_robots
+        if res is not None
+    )

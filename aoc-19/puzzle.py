@@ -11,7 +11,7 @@ Geode = int
 Cost = tuple[Ore, Clay, Obsidian]
 
 # globals
-max_time = 24
+global max_time
 
 
 @dataclass(frozen=True)
