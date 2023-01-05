@@ -1,0 +1,76 @@
+Blueprint 1:
+  Each ore robot costs 4 ore.
+  Each clay robot costs 2 ore.
+  Each obsidian robot costs 3 ore and 14 clay.
+  Each geode robot costs 2 ore and 7 obsidian.
+
+
+ 3 Resources(time=21, store=(3, 0, 0, 0), robots=(1, 0, 0, 0), value=(0, 0, 0, 24))
+ 3 Resources(time=21, store=(1, 0, 0, 0), robots=(1, 1, 0, 0), value=(0, 0, 21, 22))       <<< new clay robot
+ 5 Resources(time=19, store=(3, 2, 0, 0), robots=(1, 1, 0, 0), value=(0, 0, 21, 22))
+ 5 Resources(time=19, store=(1, 2, 0, 0), robots=(1, 2, 0, 0), value=(0, 0, 40, 20))       <<< new clay robot
+ 7 Resources(time=17, store=(3, 6, 0, 0), robots=(1, 2, 0, 0), value=(0, 0, 40, 20))
+ 7 Resources(time=17, store=(1, 6, 0, 0), robots=(1, 3, 0, 0), value=(0, 0, 57, 18))       <<< new clay robot
+11 Resources(time=13, store=(5, 18, 0, 0), robots=(1, 3, 0, 0), value=(0, 0, 57, 18))
+11 Resources(time=13, store=(2, 4, 0, 0), robots=(1, 3, 1, 0), value=(0, 13, 43, 15))      <<< new obsidian robot
+12 Resources(time=12, store=(3, 7, 1, 0), robots=(1, 3, 1, 0), value=(0, 13, 43, 15))
+12 Resources(time=12, store=(1, 7, 1, 0), robots=(1, 4, 1, 0), value=(0, 13, 55, 13))      <<< new clay robot
+15 Resources(time=9, store=(4, 19, 4, 0), robots=(1, 4, 1, 0), value=(0, 13, 55, 13))
+15 Resources(time=9, store=(1, 5, 4, 0), robots=(1, 4, 2, 0), value=(0, 22, 41, 10))       <<< new obsidian robot
+18 Resources(time=6, store=(4, 17, 10, 0), robots=(1, 4, 2, 0), value=(0, 22, 41, 10))
+18 Resources(time=6, store=(2, 17, 3, 0), robots=(1, 4, 2, 1), value=(6, 15, 41, 8))       <<< new geode robot
+21 Resources(time=3, store=(5, 29, 9, 3), robots=(1, 4, 2, 1), value=(6, 15, 41, 8))
+21 Resources(time=3, store=(3, 29, 2, 3), robots=(1, 4, 2, 2), value=(9, 8, 41, 6))        <<< new geode robot
+22 Resources(time=2, store=(4, 33, 4, 5), robots=(1, 4, 2, 2), value=(9, 8, 41, 6))
+22 Resources(time=2, store=(1, 19, 4, 5), robots=(1, 4, 3, 2), value=(9, 10, 27, 3))       <<< new obsidian robot
+
+
+
+Blueprint 2:
+  Each ore robot costs 2 ore.
+  Each clay robot costs 3 ore.
+  Each obsidian robot costs 3 ore and 8 clay.
+  Each geode robot costs 3 ore and 12 obsidian.
+
+ 3 Resources(time=21, store=(3, 0, 0, 0), robots=(1, 0, 0, 0), value=(0, 0, 0, 24))
+ 3 Resources(time=21, store=(1, 0, 0, 0), robots=(2, 0, 0, 0), value=(0, 0, 0, 43))        <<< new ore robot
+ 5 Resources(time=19, store=(5, 0, 0, 0), robots=(2, 0, 0, 0), value=(0, 0, 0, 43))
+ 5 Resources(time=19, store=(3, 0, 0, 0), robots=(3, 0, 0, 0), value=(0, 0, 0, 60))        <<< new ore robot
+ 6 Resources(time=18, store=(6, 0, 0, 0), robots=(3, 0, 0, 0), value=(0, 0, 0, 60))
+ 6 Resources(time=18, store=(3, 0, 0, 0), robots=(3, 1, 0, 0), value=(0, 0, 18, 57))       <<< new clay robot
+ 7 Resources(time=17, store=(6, 1, 0, 0), robots=(3, 1, 0, 0), value=(0, 0, 18, 57))
+ 7 Resources(time=17, store=(3, 1, 0, 0), robots=(3, 2, 0, 0), value=(0, 0, 35, 54))       <<< new clay robot
+ 8 Resources(time=16, store=(6, 3, 0, 0), robots=(3, 2, 0, 0), value=(0, 0, 35, 54))
+ 8 Resources(time=16, store=(3, 3, 0, 0), robots=(3, 3, 0, 0), value=(0, 0, 51, 51))       <<< new clay robot
+ 9 Resources(time=15, store=(6, 6, 0, 0), robots=(3, 3, 0, 0), value=(0, 0, 51, 51))
+ 9 Resources(time=15, store=(3, 6, 0, 0), robots=(3, 4, 0, 0), value=(0, 0, 66, 48))       <<< new clay robot
+10 Resources(time=14, store=(6, 10, 0, 0), robots=(3, 4, 0, 0), value=(0, 0, 66, 48))
+10 Resources(time=14, store=(3, 10, 0, 0), robots=(3, 5, 0, 0), value=(0, 0, 80, 45))      <<< new clay robot
+11 Resources(time=13, store=(6, 15, 0, 0), robots=(3, 5, 0, 0), value=(0, 0, 80, 45))
+11 Resources(time=13, store=(3, 7, 0, 0), robots=(3, 5, 1, 0), value=(0, 13, 72, 42))      <<< new obsidian robot
+12 Resources(time=12, store=(6, 12, 1, 0), robots=(3, 5, 1, 0), value=(0, 13, 72, 42))
+12 Resources(time=12, store=(3, 12, 1, 0), robots=(3, 6, 1, 0), value=(0, 13, 84, 39))     <<< new clay robot
+13 Resources(time=11, store=(6, 18, 2, 0), robots=(3, 6, 1, 0), value=(0, 13, 84, 39))
+13 Resources(time=11, store=(3, 10, 2, 0), robots=(3, 6, 2, 0), value=(0, 24, 76, 36))     <<< new obsidian robot
+14 Resources(time=10, store=(6, 16, 4, 0), robots=(3, 6, 2, 0), value=(0, 24, 76, 36))
+14 Resources(time=10, store=(3, 8, 4, 0), robots=(3, 6, 3, 0), value=(0, 34, 68, 33))      <<< new obsidian robot
+15 Resources(time=9, store=(6, 14, 7, 0), robots=(3, 6, 3, 0), value=(0, 34, 68, 33))
+15 Resources(time=9, store=(3, 6, 7, 0), robots=(3, 6, 4, 0), value=(0, 43, 60, 30))       <<< new obsidian robot
+16 Resources(time=8, store=(6, 12, 11, 0), robots=(3, 6, 4, 0), value=(0, 43, 60, 30))
+16 Resources(time=8, store=(3, 12, 11, 0), robots=(3, 7, 4, 0), value=(0, 43, 68, 27))     <<< new clay robot
+17 Resources(time=7, store=(6, 19, 15, 0), robots=(3, 7, 4, 0), value=(0, 43, 68, 27))
+17 Resources(time=7, store=(3, 11, 15, 0), robots=(3, 7, 5, 0), value=(0, 50, 60, 24))     <<< new obsidian robot
+18 Resources(time=6, store=(6, 18, 20, 0), robots=(3, 7, 5, 0), value=(0, 50, 60, 24))
+18 Resources(time=6, store=(3, 18, 8, 0), robots=(3, 7, 5, 1), value=(6, 38, 60, 21))      <<< new geode robot
+19 Resources(time=5, store=(6, 25, 13, 1), robots=(3, 7, 5, 1), value=(6, 38, 60, 21))
+19 Resources(time=5, store=(3, 17, 13, 1), robots=(3, 7, 6, 1), value=(6, 43, 52, 18))     <<< new obsidian robot
+20 Resources(time=4, store=(6, 24, 19, 2), robots=(3, 7, 6, 1), value=(6, 43, 52, 18))
+20 Resources(time=4, store=(3, 24, 7, 2), robots=(3, 7, 6, 2), value=(10, 31, 52, 15))     <<< new geode robot
+21 Resources(time=3, store=(6, 31, 13, 4), robots=(3, 7, 6, 2), value=(10, 31, 52, 15))
+21 Resources(time=3, store=(3, 23, 13, 4), robots=(3, 7, 7, 2), value=(10, 34, 44, 12))    <<< new obsidian robot
+22 Resources(time=2, store=(6, 30, 20, 6), robots=(3, 7, 7, 2), value=(10, 34, 44, 12))
+22 Resources(time=2, store=(3, 30, 8, 6), robots=(3, 7, 7, 3), value=(12, 22, 44, 9))      <<< new geode robot
+23 Resources(time=1, store=(6, 37, 15, 9), robots=(3, 7, 7, 3), value=(12, 22, 44, 9))
+23 Resources(time=1, store=(3, 29, 15, 9), robots=(3, 7, 8, 3), value=(12, 23, 36, 6))     <<< new obsidian robot
+Resources(time=1, store=(3, 29, 15, 9), robots=(3, 7, 8, 3), value=(12, 23, 36, 6))
+Blueprint 2 can open 12 geodes

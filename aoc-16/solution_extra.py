@@ -19,8 +19,8 @@ def read_input():
     nodes = []
 
     with open(r"data.txt") as f:
-        for l in f.read().splitlines():
-            nodes.append(Node(re.findall(r"[A-Z][A-Z]|\d+", l)))
+        for line in f.read().splitlines():
+            nodes.append(Node(re.findall(r"[A-Z][A-Z]|\d+", line)))
 
     for node in nodes:
         for a_node in nodes:

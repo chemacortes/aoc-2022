@@ -1,0 +1,94 @@
+((Sorry, only in spanish))
+
+La primera solución a probar será siempre por fuerza bruta. Por eso (normalmente) los problemas planteados suelen ser lo suficientemente complejos para no poder resolverlos por fuerza bruta en un tiempo razonable. Es necesario aplicar técnicas de programación dinámica.
+
+La programación dinámica implica:
+
+- que la solución será específica para el problema planteado. Cualquier cambio
+en el planteamiento puede cambiar la solución
+
+- es complicado depurar el código
+
+Por eso hay que analizar el problema planteado para obtener alguna característica del planteamiento que ayude a simplicar la búsqueda de la solución óptima. Por lo general, se pasan por estados intermedios hasta llegar a la solución óptima. Estos estados se les darán valores con el fin de que la solución óptima tenga el máximo valor.
+
+------
+
+1)
+
+Únicamente se puede fabricar un robot por minuto. No se pueden crear más aunque se tengan materiales suficientes.
+
+
+2)
+
+El objetivo es romper el máximo de geodas.
+
+3)
+
+Existe una dependencia entre robots que fija el orden de creación. No se pueden crear robots de un tipo sin haber creado antes otros:
+
+robot_ore ----------> robot_clay -------------> robot_obsidian -------------> robot_geode
+         \------------------------------------>/                             /
+          \---------------------------------------------------------------->/
+
+Analizando los blueprints, se ve que los valores necesarios de obsidiana y arcilla suelen ser muy superiores a los de mineral. Es crítico poner a extraer arcilla lo más pronto posible para poder extraer obsidiana lo más pronto posible, y aumentar la productividad de ambos materiales lo más pronto que se pueda.
+
+4)
+
+Hay un momento en que no son necesarios crear más robots de un tipo ya que producen el máximo que puede gastarse en un minuto (robots rompedores de geodas nunca serán bastantes)
+
+5)
+
+Hay estados a los que se llegan por vías diferentes en los que se tienen los mismos robots (igual fuerza productiva) y, sin embargo, tienen diferentes materiales extraídos.
+
+Por ejemplo, supongamos que un robot de mineral cuesta 4 y uno de arcilla, 2.
+
+Si creamos primero el de ore y luego el de clay:
+
+minuto 1:  material=(1 ore, 0 clay), robots=(1 ore, 0 clay)
+minuto 2:  material=(2 ore, 0 clay), robots=(1 ore, 0 clay)
+minuto 3:  material=(3 ore, 0 clay), robots=(1 ore, 0 clay)
+minuto 4:  material=(4 ore, 0 clay), robots=(1 ore, 0 clay) --> se crea un robot ore
+           material=(0 ore, 0 clay), robots=(2 ore, 0 clay)
+minuto 5:  material=(2 ore, 0 clay), robots=(2 ore, 0 clay) --> se crea un robot clay
+           material=(0 ore, 0 clay), robots=(2 ore, 1 clay)
+minuto 6:  material=(2 ore, 1 clay), robots=(2 ore, 1 clay)
+
+Si creamos primero el de clay y luego el de ore:
+
+minuto 1:  material=(1 ore, 0 clay), robots=(1 ore, 0 clay)
+minuto 2:  material=(2 ore, 0 clay), robots=(1 ore, 0 clay) --> se crea un robot clay
+           material=(0 ore, 0 clay), robots=(1 ore, 1 clay)
+minuto 3:  material=(1 ore, 1 clay), robots=(1 ore, 1 clay)
+minuto 4:  material=(2 ore, 2 clay), robots=(1 ore, 1 clay)
+minuto 5:  material=(3 ore, 3 clay), robots=(1 ore, 1 clay)
+minuto 6:  material=(4 ore, 4 clay), robots=(1 ore, 1 clay) --> se crea un robot ore
+           material=(0 ore, 4 clay), robots=(2 ore, 1 clay)
+
+También podemos optar por crear dos clay:
+
+minuto 1:  material=(1 ore, 0 clay), robots=(1 ore, 0 clay)
+minuto 2:  material=(2 ore, 0 clay), robots=(1 ore, 0 clay) --> se crea un robot clay
+           material=(0 ore, 0 clay), robots=(1 ore, 1 clay)
+minuto 3:  material=(1 ore, 1 clay), robots=(1 ore, 1 clay)
+minuto 4:  material=(2 ore, 2 clay), robots=(1 ore, 1 clay) --> se crea un robot clay
+           material=(0 ore, 2 clay), robots=(1 ore, 2 clay)
+minuto 5:  material=(1 ore, 4 clay), robots=(1 ore, 2 clay)
+minuto 6:  material=(2 ore, 6 clay), robots=(1 ore, 2 clay)
+
+
+6)
+
+Creamos una función de valoración en función del tiempo restante:
+
+  value = (
+            geodes + robots_geode * remain_time,
+            obsidians + robots_obsidian * remain_time,
+            clay + robots_clay * remain_time,
+            ore + robots_ore * remain_time
+          )
+
+Esta función se caracteriza por tener el mismo valor para un estado que no cree nuevos robots, sólo depende del tiempo que queda. El valor siempre aumenta si se crean más robots. Se potencia así la creación de robots geodas, después de obsidiana, de arcilla y, para acabar, de mineral.
+
+7)
+
+Se puede hacer el cálculo contrario: cuánto tiempo se necesita para crear un determinado tipo de robot y ver si se tiene suficiente tiempo para hacerlo.
