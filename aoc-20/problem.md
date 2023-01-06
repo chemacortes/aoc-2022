@@ -1,4 +1,4 @@
-[Day 20 - Advent of Code 2022](https://adventofcode.com/2022/day/20#part2)
+[Day 20 - Advent of Code 2022](https://adventofcode.com/2022/day/20)
 
 ## \-\-\- Day 20: Grove Positioning System ---
 
@@ -64,8 +64,6 @@ Mix your encrypted file exactly once. _What is the sum of the three numbers that
 
 Your puzzle answer was `10831`.
 
-The first half of this puzzle is complete! It provides one gold star: *
-
 ## \-\-\- Part Two ---
 
 The grove coordinate values seem nonsensical. While you ponder the mysteries of Elf encryption, you suddenly remember the rest of the decryption routine you overheard back at camp.
@@ -114,3 +112,7 @@ After 10 rounds of mixing:
 The grove coordinates can still be found in the same way. Here, the 1000th number after `0` is `_811589153_`, the 2000th is `_2434767459_`, and the 3000th is `_-1623178306_`; adding these together produces `_1623178306_`.
 
 Apply the decryption key and mix your encrypted file ten times. _What is the sum of the three numbers that form the grove coordinates?_
+
+Your puzzle answer was `6420481789383`.
+
+Both parts of this puzzle are complete! They provide two gold stars: **
