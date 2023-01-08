@@ -44,7 +44,7 @@ class Pointer:
         front = self.map.get(pos, " ")
 
         if front == " ":  # wrap
-            pos = self.wrap(pos)
+            pos = self.wrap()
             front = self.map.get(pos, " ")
 
         if front == ".":
@@ -60,7 +60,7 @@ class Pointer:
         else:
             self.face = (self.face - 1) % 4
 
-    def wrap(self, pos) -> Pos:
+    def wrap(self) -> Pos:
         row, col = self.pos
         match self.face:
             case 0:
