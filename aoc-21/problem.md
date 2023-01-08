@@ -1,4 +1,4 @@
-[Day 21 - Advent of Code 2022](https://adventofcode.com/2022/day/21#part2)
+[Day 21 - Advent of Code 2022](https://adventofcode.com/2022/day/21)
 
 ## \-\-\- Day 21: Monkey Math ---
 
@@ -48,8 +48,6 @@ However, your actual situation involves considerably more monkeys. _What number 
 
 Your puzzle answer was `379578518396784`.
 
-The first half of this puzzle is complete! It provides one gold star: *
-
 ## \-\-\- Part Two ---
 
 Due to some kind of monkey-elephant-human mistranslation, you seem to have misunderstood a few key details about the riddle.
@@ -61,3 +59,7 @@ Second, you got the wrong monkey for the job starting with `humn:`. It isn't a m
 In the above example, the number you need to yell to pass `root`'s equality test is `_301_`. (This causes `root` to get the same number, `150`, from both of its monkeys.)
 
 _What number do you yell to pass `root`'s equality test?_
+
+Your puzzle answer was `3353687996514`.
+
+Both parts of this puzzle are complete! They provide two gold stars: **
