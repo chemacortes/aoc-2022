@@ -1,4 +1,4 @@
-[Day 22 - Advent of Code 2022](https://adventofcode.com/2022/day/22#part2)
+[Day 22 - Advent of Code 2022](https://adventofcode.com/2022/day/22)
 
 ## \-\-\- Day 22: Monkey Map ---
 
@@ -86,8 +86,6 @@ Follow the path given in the monkeys' notes. _What is the final password?_
 
 Your puzzle answer was `31568`.
 
-The first half of this puzzle is complete! It provides one gold star: *
-
 ## \-\-\- Part Two ---
 
 As you reach the force field, you think you hear some Elves in the distance. Perhaps they've already arrived?
@@ -167,3 +165,7 @@ Using the same method of drawing the _last facing you had_ with an arrow on each
 The final password is still calculated from your final position and facing from the perspective of the map. In this example, the final row is `5`, the final column is `7`, and the final facing is `3`, so the final password is 1000 * 5 + 4 * 7 + 3 = `_5031_`.
 
 Fold the map into a cube, _then_ follow the path given in the monkeys' notes. _What is the final password?_
+
+Your puzzle answer was `36540`.
+
+Both parts of this puzzle are complete! They provide two gold stars: **
