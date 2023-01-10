@@ -24,7 +24,7 @@ class Pointer:
     def value(self):
         row, col = self.pos
 
-        return 1000 * row + 4 * (col) + self.face
+        return 1000 * row + 4 * col + self.face
 
     def go(self) -> bool:
 
@@ -95,27 +95,34 @@ if __name__ == "__main__":
 
     os.chdir(Path(__file__).parent)
 
-    TRAINING = False
+    TRAINING = True
+    SHOW = True
     map, moves = read("data-training.txt" if TRAINING else "data.txt")
 
-    pointer = Pointer(map, (1, 1), 0)
+    start = (1, min(y for ((x, y), c) in map.items() if x == 1 and c == "."))
+    pointer = Pointer(map, start, 0)
     for move in moves:
-        if move.isdigit():
-            n = int(move)
-            while n > 0:
-                if not pointer.go():
-                    # input("BLOCKED....")
-                    break
-                else:
-                    # pointer.show()
-                    # print(f"{n} de {move}")
-                    # input("Press...")
-                    pass
-                n -= 1
-        else:
-            pointer.turn(move)
-            # pointer.show()
-            # input("Press...")
+        match move:
+            case int(n):
+                while n > 0:
+                    if not pointer.go():
+                        if SHOW:
+                            input("BLOCKED....")
+                        break
+                    else:
+                        if SHOW:
+                            pointer.show()
+                            print(f"{n} de {move}")
+                            print(pointer)
+                            input("Press...")
+                        pass
+                    n -= 1
+            case str(t):
+                pointer.turn(t)
+                if SHOW:
+                    pointer.show()
+                    print(pointer)
+                    input("Press...")
 
     print(pointer)
     print(pointer.value())
