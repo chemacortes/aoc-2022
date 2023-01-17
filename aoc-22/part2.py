@@ -5,6 +5,7 @@ import time
 
 from aoc22_types import DOWN, LEFT, RIGHT, UP, Face, Map, Pos
 from cube import cube_front, schema1, schema2
+from richshow import Show
 from util import read
 
 
@@ -60,35 +61,6 @@ class Pointer:
         else:
             self.face = Face((self.face - 1) % 4)
 
-    def show(self, msg: str | None = None, *, stop=False):
-        global SHOW
-
-        if not SHOW:
-            return
-
-        row, col = self.pos
-
-        print("\x1Bc")
-        print(self)
-        for i in range(row - 10, row + 10):
-            print(
-                "".join(
-                    ">v<^"[self.face]
-                    if (i, j) == self.pos
-                    else self.map.get((i, j), " ")
-                    for j in range(col - 20, col + 20)
-                )
-            )
-
-        print()
-        if msg is not None:
-            print(msg.center(40))
-
-        if stop:
-            input("Press a key...")
-        else:
-            time.sleep(0.1)
-
 
 if __name__ == "__main__":
 
@@ -103,7 +75,10 @@ if __name__ == "__main__":
 
     start = (1, min(y for ((x, y), c) in map.items() if x == 1 and c == "."))
     pointer = Pointer(map, start, RIGHT)
-    pointer.show()
+
+    show = Show(pointer, moves)
+    show.show_start()
+    show.show()
 
     for move in moves:
         match move:
@@ -112,11 +87,17 @@ if __name__ == "__main__":
                     if not pointer.go():
                         break
                     else:
-                        pointer.show(f"Move {n} of {move}")
+                        show.show(n)
+                        time.sleep(0.1)
                     n -= 1
             case str(t):
                 pointer.turn(t)
-                pointer.show()
+                show.show()
+                time.sleep(0.2)
+
+        # input("Press a key...")
+
+    show.show_stop()
 
     print(pointer)
     print(pointer.value())
