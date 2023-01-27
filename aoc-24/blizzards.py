@@ -8,7 +8,9 @@ class Blizzards:
         self, dims: Dims, right: Grid, down: Grid, left: Grid, up: Grid
     ):
         self.dims = dims
+
         # one set of blizzards by direction
+        # really, only need the last tuple of blizzards
         self.blizzs = [(right, down, left, up)]
 
     def generate(self, round: int):
@@ -43,16 +45,31 @@ class Blizzards:
         return (
             1 <= r <= rows
             and 1 <= c <= cols
-            and any(pos in blizz for blizz in self.blizzs[round])
+            and all(pos not in blizz for blizz in self.blizzs[round])
         )
 
-    def show(self, round: int = 0):
+    def blizz(self, round: int, positions: set[Pos]) -> set[Pos]:
+
+        if round >= len(self.blizzs):
+            self.generate(round)
+
+        rows, cols = self.dims
+        right, down, left, up = self.blizzs[round]
+
+        positions2 = {
+            (r, c) for (r, c) in positions if 1 <= r <= rows and 1 <= c <= cols
+        }
+
+        return positions2 - right - down - left - up
+
+    def show(self, round: int = 0, grid: set[Pos] = set()):
 
         self.generate(round)
 
         rows, cols = self.dims
         right, down, left, up = self.blizzs[round]
 
+        print(f"\nRound: {round}")
         print("#." + "#" * cols)
         for row in range(1, rows + 1):
             print("#", end="")
@@ -67,10 +84,18 @@ class Blizzards:
                 if (row, col) in up:
                     c += "^"
 
-                if len(c) == 0:
-                    c = "."
-                elif len(c) > 1:
-                    c = str(len(c))
+                match len(c):
+                    case 0:
+                        c = "."
+                    case 1:
+                        pass
+                    case n if n < 10:
+                        c = str(n)
+                    case _:
+                        c = "*"
+
+                if (row, col) in grid:
+                    c = "E" if c == "." else "W"  # W = WRONG
 
                 print(c, end="")
             print("#")
@@ -111,9 +136,8 @@ def load_blizzards(file_input: str) -> Blizzards:
 
 if __name__ == "__main__":
 
-    # blizzards = load_blizzards("data-training-1.txt")
-    blizzards = load_blizzards("data.txt")
+    # blizzards = load_blizzards("data-training-0.txt")
+    blizzards = load_blizzards("data-training.txt")
 
-    for r in range(10):
-        print(f"\nRound {r}")
+    for r in range(19):
         blizzards.show(round=r)
